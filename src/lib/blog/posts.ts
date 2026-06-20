@@ -1,9 +1,11 @@
-import { supabase } from './supabase';
+import { getSupabase } from './supabase';
 import { BlogPost } from './types';
 
 export async function readPosts(): Promise<BlogPost[]> {
   try {
-    const { data, error } = await supabase
+    const supabase = getSupabase();
+    if (!supabase) return [];
+    const { data, error } = await (supabase as any)
       .from('blog_posts')
       .select('*')
       .order('created_at', { ascending: false });
@@ -16,7 +18,9 @@ export async function readPosts(): Promise<BlogPost[]> {
 
 export async function getPostById(id: string): Promise<BlogPost | undefined> {
   try {
-    const { data, error } = await supabase
+    const supabase = getSupabase();
+    if (!supabase) return undefined;
+    const { data, error } = await (supabase as any)
       .from('blog_posts')
       .select('*')
       .eq('id', id)
@@ -38,7 +42,10 @@ export async function getPostBySlug(slug: string, locale: string): Promise<BlogP
 }
 
 export async function createPost(post: BlogPost): Promise<BlogPost> {
-  const { error } = await supabase.from('blog_posts').insert({
+  const supabase = getSupabase();
+  if (!supabase) throw new Error('Supabase not configured');
+
+  const { error } = await (supabase as any).from('blog_posts').insert({
     id: post.id,
     translations: JSON.stringify(post.translations),
     featured_image: post.featuredImage || '',
@@ -53,6 +60,9 @@ export async function createPost(post: BlogPost): Promise<BlogPost> {
 }
 
 export async function updatePost(id: string, updates: Partial<BlogPost>): Promise<BlogPost | null> {
+  const supabase = getSupabase();
+  if (!supabase) throw new Error('Supabase not configured');
+
   const dbUpdates: Record<string, unknown> = {
     updated_at: new Date().toISOString().split('T')[0],
   };
@@ -63,7 +73,7 @@ export async function updatePost(id: string, updates: Partial<BlogPost>): Promis
   if (updates.categories !== undefined) dbUpdates.categories = JSON.stringify(updates.categories);
   if (updates.publishedAt !== undefined) dbUpdates.published_at = updates.publishedAt;
 
-  const { error, data } = await supabase
+  const { error, data } = await (supabase as any)
     .from('blog_posts')
     .update(dbUpdates)
     .eq('id', id)
@@ -74,12 +84,12 @@ export async function updatePost(id: string, updates: Partial<BlogPost>): Promis
 }
 
 export async function deletePost(id: string): Promise<boolean> {
-  const { error, count } = await supabase
-    .from('blog_posts')
-    .delete()
-    .eq('id', id);
+  const supabase = getSupabase();
+  if (!supabase) throw new Error('Supabase not configured');
+
+  const { error } = await (supabase as any).from('blog_posts').delete().eq('id', id);
   if (error) throw error;
-  return count !== null && count > 0;
+  return true;
 }
 
 function transformRow(row: any): BlogPost {
