@@ -83,3 +83,6 @@ public/libreoffice-wasm/soffice.data.bin
 src-tauri/target/
 
 yarn.lock
+
+# Blog local data (now stored in Supabase)
+data/

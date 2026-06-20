@@ -23,7 +23,7 @@ export default function RootLayout({
       <head>
         <meta name="google-site-verification" content="L2_6hvHtfxRoOQrNJXYkbe02FefM0cmuL19KTOkShLU" />
         <meta name="color-scheme" content="light dark" />
-        <style dangerouslySetInnerHTML={{ __html: 'html{scrollbar-gutter:stable}' }} />
+        <style suppressHydrationWarning dangerouslySetInnerHTML={{ __html: 'html{scrollbar-gutter:stable}' }} />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -38,7 +38,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen bg-background text-foreground antialiased">
+      <body className="min-h-screen bg-background text-foreground antialiased" suppressHydrationWarning>
         {children}
       </body>
     </html>
