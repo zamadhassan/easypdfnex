@@ -1,21 +1,8 @@
 import { notFound } from 'next/navigation';
-import { locales } from '@/lib/i18n/config';
 import { readPosts } from '@/lib/blog/posts';
 import BlogPostContent from './BlogPostContent';
 
-export async function generateStaticParams() {
-  const posts = await readPosts();
-  const params: { locale: string; slug: string }[] = [];
-  for (const locale of locales) {
-    for (const post of posts) {
-      const t = post.translations[locale];
-      if (t?.slug) {
-        params.push({ locale, slug: t.slug });
-      }
-    }
-  }
-  return params;
-}
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;

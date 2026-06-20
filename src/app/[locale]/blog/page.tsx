@@ -1,10 +1,7 @@
-import { locales } from '@/lib/i18n/config';
 import { readPosts } from '@/lib/blog/posts';
 import BlogList from './BlogList';
 
-export function generateStaticParams() {
-  return locales.map(locale => ({ locale }));
-}
+export const dynamic = 'force-dynamic';
 
 export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
