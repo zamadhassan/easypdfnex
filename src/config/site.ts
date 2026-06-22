@@ -4,7 +4,7 @@
 export const siteConfig = {
   name: 'EasyPDFNex',
   description: 'Professional PDF Tools - Free, Private & Browser-Based. Merge, split, compress, convert, and edit PDF files online without uploading to servers.',
-  url: 'https://easypdfnex.com',
+  url: 'https://easypdfnex.app',
   ogImage: '/images/og-image.png',
   links: {
     github: 'https://github.com/EasyPDFNex/easypdfnex',
