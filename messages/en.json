@@ -47,6 +47,9 @@
       "privacy": "Privacy",
       "contact": "Contact"
     },
+    "blog": {
+      "relatedTools": "Related Tools"
+    },
     "buttons": {
       "upload": "Upload Files",
       "download": "Download",
@@ -3177,5 +3180,8 @@
       "processButton": "Translate & Convert Invoice",
       "successMessage": "Foreign invoice translated and local conversion ledger stamped successfully!"
     }
+  },
+  "blog": {
+    "relatedTools": "Related Tools"
   }
 }

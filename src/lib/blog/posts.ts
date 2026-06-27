@@ -54,6 +54,7 @@ export async function createPost(post: BlogPost): Promise<BlogPost> {
     updated_at: post.updatedAt || new Date().toISOString().split('T')[0],
     published: post.published ?? false,
     categories: JSON.stringify(post.categories || []),
+    related_tools: JSON.stringify(post.relatedTools || []),
   });
   if (error) throw error;
   return post;
@@ -72,6 +73,7 @@ export async function updatePost(id: string, updates: Partial<BlogPost>): Promis
   if (updates.published !== undefined) dbUpdates.published = updates.published;
   if (updates.categories !== undefined) dbUpdates.categories = JSON.stringify(updates.categories);
   if (updates.publishedAt !== undefined) dbUpdates.published_at = updates.publishedAt;
+  if (updates.relatedTools !== undefined) dbUpdates.related_tools = JSON.stringify(updates.relatedTools);
 
   const { error, data } = await (supabase as any)
     .from('blog_posts')
@@ -102,5 +104,6 @@ function transformRow(row: any): BlogPost {
     updatedAt: row.updated_at || '',
     published: row.published ?? false,
     categories: typeof row.categories === 'string' ? JSON.parse(row.categories) : (row.categories || []),
+    relatedTools: typeof row.related_tools === 'string' ? JSON.parse(row.related_tools) : (row.related_tools || []),
   };
 }

@@ -17,6 +17,8 @@ export interface BlogPost {
   updatedAt: string;
   published: boolean;
   categories: string[];
+  /** Optional: related tool slugs for internal linking */
+  relatedTools?: string[];
 }
 
 export interface BlogSettings {
