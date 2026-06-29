@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import type { ReactNode } from 'react';
 import { ArrowLeft, Calendar, User, ExternalLink, BookOpen } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { BlogPost } from '@/lib/blog/types';
@@ -10,9 +11,32 @@ import { getToolById } from '@/config/tools';
 import { useTranslations } from 'next-intl';
 import { Card } from '@/components/ui/Card';
 
+function getNodeText(children: ReactNode): string {
+  if (typeof children === 'string' || typeof children === 'number') return String(children);
+  if (Array.isArray(children)) return children.map(getNodeText).join('');
+  return '';
+}
+
+function slugifyHeading(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+}
+
+function getMarkdownHeadings(content: string): { id: string; title: string }[] {
+  return content
+    .split('\n')
+    .map((line) => line.match(/^##\s+(?!#)(.+)$/)?.[1]?.trim())
+    .filter((title): title is string => Boolean(title))
+    .map((title) => ({ id: slugifyHeading(title), title }));
+}
+
 export default function BlogPostContent({ post, locale }: { post: BlogPost; locale: string }) {
   const t = post.translations[locale]!;
   const tCommon = useTranslations();
+  const headings = getMarkdownHeadings(t.content);
 
   // Get related tools data
   const relatedTools = post.relatedTools
@@ -53,8 +77,82 @@ export default function BlogPostContent({ post, locale }: { post: BlogPost; loca
             </div>
           </header>
 
-          <div className="prose prose-sm md:prose-base max-w-none prose-headings:text-[hsl(var(--color-foreground))] prose-p:text-[hsl(var(--color-muted-foreground))] prose-a:text-[hsl(var(--color-primary))] prose-strong:text-[hsl(var(--color-foreground))] prose-code:text-[hsl(var(--color-primary))] prose-pre:bg-[hsl(var(--color-muted))] prose-pre:border prose-pre:border-[hsl(var(--color-border))]">
-            <ReactMarkdown>{t.content}</ReactMarkdown>
+          {headings.length > 0 && (
+            <nav
+              aria-label="Blog post sections"
+              className="mb-10 rounded-2xl border border-[hsl(var(--color-border))] bg-[hsl(var(--color-card))] p-5 shadow-sm"
+            >
+              <div className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(var(--color-primary))]">
+                In this guide
+              </div>
+              <ol className="mt-4 grid gap-2 sm:grid-cols-2">
+                {headings.map((heading) => (
+                  <li key={heading.id}>
+                    <a
+                      href={`#${heading.id}`}
+                      className="block rounded-xl px-3 py-2 text-sm font-medium text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-primary)/0.08)] hover:text-[hsl(var(--color-primary))] transition-colors"
+                    >
+                      {heading.title}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
+
+          <div className="max-w-none">
+            <ReactMarkdown
+              components={{
+                h2: ({ children }) => {
+                  const title = getNodeText(children);
+                  return (
+                    <h2
+                      id={slugifyHeading(title)}
+                      className="scroll-mt-28 mt-12 mb-5 border-l-4 border-[hsl(var(--color-primary))] pl-4 text-2xl md:text-3xl font-bold tracking-tight text-[hsl(var(--color-foreground))]"
+                    >
+                      {children}
+                    </h2>
+                  );
+                },
+                h3: ({ children }) => {
+                  const title = getNodeText(children);
+                  return (
+                    <h3
+                      id={slugifyHeading(title)}
+                      className="scroll-mt-28 mt-8 mb-3 text-xl font-semibold text-[hsl(var(--color-foreground))]"
+                    >
+                      {children}
+                    </h3>
+                  );
+                },
+                p: ({ children }) => (
+                  <p className="mb-5 text-base leading-8 text-[hsl(var(--color-muted-foreground))] md:text-[1.05rem]">
+                    {children}
+                  </p>
+                ),
+                a: ({ href, children }) => {
+                  const className = 'font-semibold text-[hsl(var(--color-primary))] underline decoration-[hsl(var(--color-primary)/0.35)] decoration-2 underline-offset-4 hover:decoration-[hsl(var(--color-primary))]';
+                  if (href?.startsWith('/')) {
+                    return <Link href={href} className={className}>{children}</Link>;
+                  }
+                  return <a href={href} className={className} target="_blank" rel="noopener noreferrer">{children}</a>;
+                },
+                ul: ({ children }) => (
+                  <ul className="mb-6 space-y-3 rounded-2xl border border-[hsl(var(--color-border))] bg-[hsl(var(--color-muted)/0.35)] p-5">
+                    {children}
+                  </ul>
+                ),
+                ol: ({ children }) => <ol className="mb-6 list-decimal space-y-3 pl-6 text-[hsl(var(--color-muted-foreground))]">{children}</ol>,
+                li: ({ children }) => (
+                  <li className="ml-5 list-disc pl-1 leading-7 text-[hsl(var(--color-muted-foreground))] marker:text-[hsl(var(--color-primary))]">
+                    {children}
+                  </li>
+                ),
+                strong: ({ children }) => <strong className="font-bold text-[hsl(var(--color-foreground))]">{children}</strong>,
+              }}
+            >
+              {t.content}
+            </ReactMarkdown>
           </div>
 
           {/* Related Tools Section */}
