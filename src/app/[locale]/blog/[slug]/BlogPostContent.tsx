@@ -18,11 +18,13 @@ function getNodeText(children: ReactNode): string {
 }
 
 function slugifyHeading(value: string): string {
-  return value
+  const slug = value
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
+    .normalize('NFKC')
+    .replace(/[^\p{Letter}\p{Number}\s-]/gu, '')
     .trim()
     .replace(/\s+/g, '-');
+  return slug || 'section';
 }
 
 function getMarkdownHeadings(content: string): { id: string; title: string }[] {
@@ -36,6 +38,7 @@ function getMarkdownHeadings(content: string): { id: string; title: string }[] {
 export default function BlogPostContent({ post, locale }: { post: BlogPost; locale: string }) {
   const t = post.translations[locale]!;
   const tCommon = useTranslations();
+  const tBlog = useTranslations('blog');
   const headings = getMarkdownHeadings(t.content);
 
   // Get related tools data
@@ -53,7 +56,7 @@ export default function BlogPostContent({ post, locale }: { post: BlogPost; loca
             href={`/${locale}/blog`}
             className="inline-flex items-center gap-1.5 text-sm text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-primary))] transition-colors mb-8"
           >
-            <ArrowLeft className="w-3.5 h-3.5" /> Back to Blog
+            <ArrowLeft className="w-3.5 h-3.5" /> {tBlog('backToBlog')}
           </Link>
 
           {post.featuredImage && (
@@ -83,7 +86,7 @@ export default function BlogPostContent({ post, locale }: { post: BlogPost; loca
               className="mb-10 rounded-2xl border border-[hsl(var(--color-border))] bg-[hsl(var(--color-card))] p-5 shadow-sm"
             >
               <div className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(var(--color-primary))]">
-                In this guide
+                {tBlog('inThisGuide')}
               </div>
               <ol className="mt-4 grid gap-2 sm:grid-cols-2">
                 {headings.map((heading) => (
@@ -160,7 +163,7 @@ export default function BlogPostContent({ post, locale }: { post: BlogPost; loca
             <section className="mt-16 pt-8 border-t border-[hsl(var(--color-border))]">
               <h2 className="text-2xl font-bold text-[hsl(var(--color-foreground))] mb-6 flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-[hsl(var(--color-primary))]" />
-                {tCommon('blog.relatedTools') || 'Related Tools'}
+                {tBlog('relatedTools')}
               </h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {relatedTools.map(tool => (

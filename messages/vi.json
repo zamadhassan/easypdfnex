@@ -3177,5 +3177,15 @@
       "processButton": "Dịch & Quy đổi Hóa đơn",
       "successMessage": "Đã dịch hóa đơn nước ngoài và đóng dấu sổ quy đổi nội tệ thành công!"
     }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Mẹo, hướng dẫn và tin tức về xử lý PDF",
+    "readMore": "Đọc thêm",
+    "noPostsTitle": "Chưa có bài viết",
+    "noPostsDescription": "Hãy quay lại sớm để xem nội dung mới",
+    "backToBlog": "Quay lại Blog",
+    "inThisGuide": "Trong hướng dẫn này",
+    "relatedTools": "Công cụ liên quan"
   }
 }

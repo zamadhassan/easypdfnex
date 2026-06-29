@@ -3177,5 +3177,15 @@
       "processButton": "Translate & Convert Invoice",
       "successMessage": "Foreign invoice translated and local conversion ledger stamped successfully!"
     }
+  },
+  "blog": {
+    "title": "部落格",
+    "description": "關於 PDF 處理的技巧、教學和新聞",
+    "readMore": "閱讀更多",
+    "noPostsTitle": "尚無文章",
+    "noPostsDescription": "請稍後回來查看新內容",
+    "backToBlog": "返回部落格",
+    "inThisGuide": "本指南內容",
+    "relatedTools": "相關工具"
   }
 }

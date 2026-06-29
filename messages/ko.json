@@ -3177,5 +3177,15 @@
       "processButton": "송장 자동 번역 및 환산 실행",
       "successMessage": "외화 송장의 번역 및 로컬 통화 환산 장부 스탬프 적용이 성공적으로 완료되었습니다!"
     }
+  },
+  "blog": {
+    "title": "블로그",
+    "description": "PDF 처리에 관한 팁, 튜토리얼 및 소식",
+    "readMore": "더 읽기",
+    "noPostsTitle": "아직 게시물이 없습니다",
+    "noPostsDescription": "새 콘텐츠를 곧 확인해 주세요",
+    "backToBlog": "블로그로 돌아가기",
+    "inThisGuide": "이 가이드에서",
+    "relatedTools": "관련 도구"
   }
 }

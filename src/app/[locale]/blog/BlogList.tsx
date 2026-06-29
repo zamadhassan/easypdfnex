@@ -5,8 +5,10 @@ import { Calendar, User, ArrowRight, FileText } from 'lucide-react';
 import { BlogPost } from '@/lib/blog/types';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { useTranslations } from 'next-intl';
 
 export default function BlogList({ posts, locale }: { posts: BlogPost[]; locale: string }) {
+  const tBlog = useTranslations('blog');
   const withTranslation = posts.filter(p => p.translations[locale]);
 
   return (
@@ -19,10 +21,10 @@ export default function BlogList({ posts, locale }: { posts: BlogPost[]; locale:
           <div className="max-w-6xl mx-auto px-4 relative">
             <div className="text-center max-w-2xl mx-auto">
               <h1 className="text-4xl md:text-5xl font-bold text-[hsl(var(--color-foreground))] mb-4">
-                Blog
+                {tBlog('title')}
               </h1>
               <p className="text-lg text-[hsl(var(--color-muted-foreground))]">
-                Tips, tutorials and news about PDF processing
+                {tBlog('description')}
               </p>
             </div>
           </div>
@@ -32,8 +34,8 @@ export default function BlogList({ posts, locale }: { posts: BlogPost[]; locale:
           {withTranslation.length === 0 ? (
             <div className="text-center py-20 border-2 border-dashed border-[hsl(var(--color-border))] rounded-2xl">
               <FileText className="w-12 h-12 mx-auto text-[hsl(var(--color-muted-foreground)/0.5)] mb-4" />
-              <h2 className="text-xl font-semibold text-[hsl(var(--color-muted-foreground))]">No posts yet</h2>
-              <p className="text-[hsl(var(--color-muted-foreground))] mt-2">Check back soon for new content</p>
+              <h2 className="text-xl font-semibold text-[hsl(var(--color-muted-foreground))]">{tBlog('noPostsTitle')}</h2>
+              <p className="text-[hsl(var(--color-muted-foreground))] mt-2">{tBlog('noPostsDescription')}</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -68,7 +70,7 @@ export default function BlogList({ posts, locale }: { posts: BlogPost[]; locale:
                         </p>
                       )}
                       <div className="flex items-center gap-1 text-sm font-medium text-[hsl(var(--color-primary))]">
-                        Read More <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                        {tBlog('readMore')} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                       </div>
                     </div>
                   </Link>

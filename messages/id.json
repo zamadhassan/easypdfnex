@@ -3177,5 +3177,15 @@
       "processButton": "Terjemahkan & Konversi Faktur",
       "successMessage": "Faktur luar negeri berhasil diterjemahkan dan buku besar konversi lokal berhasil dicap!"
     }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Tips, tutorial, dan berita tentang pemrosesan PDF",
+    "readMore": "Baca Selengkapnya",
+    "noPostsTitle": "Belum ada postingan",
+    "noPostsDescription": "Periksa kembali nanti untuk konten baru",
+    "backToBlog": "Kembali ke Blog",
+    "inThisGuide": "Dalam panduan ini",
+    "relatedTools": "Alat terkait"
   }
 }

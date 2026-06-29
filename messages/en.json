@@ -3182,6 +3182,13 @@
     }
   },
   "blog": {
+    "title": "Blog",
+    "description": "Tips, tutorials and news about PDF processing",
+    "readMore": "Read More",
+    "noPostsTitle": "No posts yet",
+    "noPostsDescription": "Check back soon for new content",
+    "backToBlog": "Back to Blog",
+    "inThisGuide": "In this guide",
     "relatedTools": "Related Tools"
   }
 }

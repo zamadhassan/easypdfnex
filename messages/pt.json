@@ -3177,5 +3177,15 @@
       "processButton": "Traduzir e converter fatura",
       "successMessage": "Fatura estrangeira traduzida e livro de conversão local carimbado com sucesso!"
     }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Dicas, tutoriais e notícias sobre processamento de PDF",
+    "readMore": "Ler mais",
+    "noPostsTitle": "Ainda não há publicações",
+    "noPostsDescription": "Volte em breve para novos conteúdos",
+    "backToBlog": "Voltar ao blog",
+    "inThisGuide": "Neste guia",
+    "relatedTools": "Ferramentas relacionadas"
   }
 }

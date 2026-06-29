@@ -3177,5 +3177,15 @@
       "processButton": "Traduire et convertir une facture",
       "successMessage": "Facture étrangère traduite et registre de conversion local tamponné avec succès !"
     }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Conseils, tutoriels et actualités sur le traitement des PDF",
+    "readMore": "Lire la suite",
+    "noPostsTitle": "Aucun article pour le moment",
+    "noPostsDescription": "Revenez bientôt pour découvrir du nouveau contenu",
+    "backToBlog": "Retour au blog",
+    "inThisGuide": "Dans ce guide",
+    "relatedTools": "Outils associés"
   }
 }

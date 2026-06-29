@@ -3177,5 +3177,15 @@
       "processButton": "Rechnung übersetzen und Währung umrechnen",
       "successMessage": "Fremdwährungsrechnung erfolgreich übersetzt und lokales Währungsledger-Siegel aufgestempelt!"
     }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Tipps, Tutorials und Neuigkeiten zur PDF-Verarbeitung",
+    "readMore": "Weiterlesen",
+    "noPostsTitle": "Noch keine Beiträge",
+    "noPostsDescription": "Schauen Sie bald wieder vorbei, um neue Inhalte zu sehen",
+    "backToBlog": "Zurück zum Blog",
+    "inThisGuide": "In diesem Leitfaden",
+    "relatedTools": "Verwandte Tools"
   }
 }

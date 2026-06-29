@@ -3177,5 +3177,15 @@
       "processButton": "一键发票翻译与折算",
       "successMessage": "外币发票翻译与本地折算账本印盖成功！"
     }
+  },
+  "blog": {
+    "title": "博客",
+    "description": "关于 PDF 处理的技巧、教程和新闻",
+    "readMore": "阅读更多",
+    "noPostsTitle": "暂无文章",
+    "noPostsDescription": "请稍后回来查看新内容",
+    "backToBlog": "返回博客",
+    "inThisGuide": "本指南内容",
+    "relatedTools": "相关工具"
   }
 }

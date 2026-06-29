@@ -3177,5 +3177,15 @@
       "processButton": "インボイスの翻訳と為替換算を実行",
       "successMessage": "インボイスの翻訳と現地通貨換算の元帳スタンプが正常に適用されました！"
     }
+  },
+  "blog": {
+    "title": "ブログ",
+    "description": "PDF処理に関するヒント、チュートリアル、ニュース",
+    "readMore": "続きを読む",
+    "noPostsTitle": "まだ投稿はありません",
+    "noPostsDescription": "新しいコンテンツをお待ちください",
+    "backToBlog": "ブログに戻る",
+    "inThisGuide": "このガイドの内容",
+    "relatedTools": "関連ツール"
   }
 }

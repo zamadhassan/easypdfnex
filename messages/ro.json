@@ -3177,5 +3177,15 @@
       "processButton": "Traduce și convertește factura",
       "successMessage": "Factura străină a fost tradusă și registrul de conversie local a fost ștampilat cu succes!"
     }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Sfaturi, tutoriale și noutăți despre procesarea PDF",
+    "readMore": "Citește mai mult",
+    "noPostsTitle": "Nu există articole încă",
+    "noPostsDescription": "Revino curând pentru conținut nou",
+    "backToBlog": "Înapoi la blog",
+    "inThisGuide": "În acest ghid",
+    "relatedTools": "Instrumente conexe"
   }
 }
