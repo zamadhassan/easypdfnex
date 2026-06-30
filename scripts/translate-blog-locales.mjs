@@ -196,7 +196,9 @@ async function translateSegments(segments, targetLocale) {
 }
 
 function normalizeTranslatedMarkdown(content) {
-  return normalizeMarkdownLinks(content.replace(/^(#{1,6})(?![#\s])/gm, '$1 '));
+  return normalizeMarkdownLinks(content
+    .replace(/^[＃]{1,6}/gm, (match) => '#'.repeat(match.length))
+    .replace(/^(#{1,6})(?![#\s])/gm, '$1 '));
 }
 
 function normalizeTranslation(translation, locale) {

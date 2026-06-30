@@ -11,8 +11,9 @@ import { locales, type Locale } from '@/lib/i18n/config';
 import { getAllTools } from '@/config/tools';
 import { readPosts } from '@/lib/blog/posts';
 
-// Required for static export
-export const dynamic = 'force-static';
+// Blog posts are Supabase-backed, so keep the sitemap fresh for CMS updates.
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 /**
  * Priority values for different page types
